@@ -35,10 +35,7 @@ export function renderNavbar(container, t, currentView, currentLanguage, onNavig
       </div>
 
       <div class="navbar__right">
-        <div class="navbar__search" role="search">
-          <span class="material-symbols-outlined" style="font-size: 20px; color: var(--on-surface-variant);">search</span>
-          <input type="text" placeholder="Search services..." aria-label="Search services" />
-        </div>
+
         <button class="navbar__icon-btn" aria-label="Language">
           <span class="material-symbols-outlined" style="font-size: 22px;">language</span>
         </button>

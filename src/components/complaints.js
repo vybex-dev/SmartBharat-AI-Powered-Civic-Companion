@@ -164,6 +164,7 @@ export function renderComplaints(container, t, language) {
               rows="3"
               placeholder="${t.complaints.descriptionPlaceholder}"
               style="margin-bottom:0; padding-right:50px;"
+              required
             ></textarea>
             <button type="button" id="complaintVoiceBtn"
               style="position:absolute; right:12px; bottom:12px; background:none; border:none; cursor:pointer; color:var(--secondary);"
@@ -192,6 +193,7 @@ export function renderComplaints(container, t, language) {
                 class="text-input"
                 placeholder="${t.complaints.locationPlaceholder}"
                 style="margin-bottom:0;"
+                required
               />
             </div>
           </div>
@@ -313,7 +315,10 @@ export function renderComplaints(container, t, language) {
     event.preventDefault();
     const description = descriptionEl.value.trim();
     const location = locationEl.value.trim();
-    if (!description || !location) return;
+    if (!description || !location) {
+      formErrorEl.textContent = "Please fill out both the description and location fields.";
+      return;
+    }
 
     submitBtn.disabled = true;
     submitBtn.innerHTML = `<span class="material-symbols-outlined wheel-spinner" style="font-size:18px;">refresh</span> ${t.complaints.submitting}`;
