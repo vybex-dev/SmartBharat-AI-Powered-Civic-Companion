@@ -11,8 +11,24 @@ import {
   GEMINI_API_URL,
   GROQ_API_URL,
   GROQ_MODEL,
+  AI_REQUEST_TIMEOUT_MS,
   getRuntimeConfig,
 } from "../config/config.js";
+
+/**
+ * Creates an AbortController that automatically aborts after the
+ * configured timeout. Returns { signal, clear } — call clear() when
+ * the request completes so the timer doesn't fire unnecessarily.
+ * @returns {{ signal: AbortSignal, clear: () => void }}
+ */
+function makeTimeoutSignal() {
+  const controller = new AbortController();
+  const timerId = setTimeout(() => controller.abort(), AI_REQUEST_TIMEOUT_MS);
+  return {
+    signal: controller.signal,
+    clear:  () => clearTimeout(timerId),
+  };
+}
 
 /**
  * Calls Google's Gemini API.
@@ -40,11 +56,23 @@ export async function callGemini(prompt, systemInstruction = "") {
     requestBody.systemInstruction = { parts: [{ text: systemInstruction }] };
   }
 
-  const response = await fetch(`${GEMINI_API_URL}?key=${geminiApiKey}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(requestBody),
-  });
+  const { signal, clear } = makeTimeoutSignal();
+  let response;
+  try {
+    response = await fetch(`${GEMINI_API_URL}?key=${geminiApiKey}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody),
+      signal,
+    });
+  } catch (err) {
+    clear();
+    if (err.name === "AbortError") {
+      throw new Error(`Gemini request timed out after ${AI_REQUEST_TIMEOUT_MS / 1000}s.`);
+    }
+    throw err;
+  }
+  clear();
 
   if (!response.ok) {
     const errorText = await response.text();
@@ -85,19 +113,31 @@ export async function callGroq(prompt, systemInstruction = "") {
   }
   messages.push({ role: "user", content: prompt });
 
-  const response = await fetch(GROQ_API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${groqApiKey}`,
-    },
-    body: JSON.stringify({
-      model: GROQ_MODEL,
-      messages,
-      temperature: 0.7,
-      max_tokens: 1024,
-    }),
-  });
+  const { signal, clear } = makeTimeoutSignal();
+  let response;
+  try {
+    response = await fetch(GROQ_API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${groqApiKey}`,
+      },
+      body: JSON.stringify({
+        model: GROQ_MODEL,
+        messages,
+        temperature: 0.7,
+        max_tokens: 1024,
+      }),
+      signal,
+    });
+  } catch (err) {
+    clear();
+    if (err.name === "AbortError") {
+      throw new Error(`Groq request timed out after ${AI_REQUEST_TIMEOUT_MS / 1000}s.`);
+    }
+    throw err;
+  }
+  clear();
 
   if (!response.ok) {
     const errorText = await response.text();
