@@ -374,8 +374,16 @@ function removeLoadingBubble(messagesEl, id) {
 function formatMessageText(text) {
   const escaped = escapeHtml(text);
   return escaped
+    // Bold: **text** -> <strong>text</strong>
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    // Inline Code: `text` -> <code>text</code>
+    .replace(/`(.*?)`/g, '<code>$1</code>')
+    // Lists: * item -> <ul><li>item</li></ul> (simple)
+    .replace(/^\s*\*\s+(.*)/gm, '<ul><li>$1</li></ul>')
+    .replace(/<\/ul>\s*<ul>/g, '')
+    // Paragraphs / Newlines
     .split("\n")
-    .map((line) => `<p>${line}</p>`)
+    .map((line) => line.trim() ? `<p>${line}</p>` : "")
     .join("");
 }
 
