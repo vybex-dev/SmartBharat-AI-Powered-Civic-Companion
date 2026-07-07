@@ -1922,6 +1922,7 @@ select.text-input {
   border-radius: var(--radius-xl);
   padding: 28px;
   box-shadow: var(--shadow-sm);
+  align-self: start;
 }
 
 .complaint-form-panel__header {
