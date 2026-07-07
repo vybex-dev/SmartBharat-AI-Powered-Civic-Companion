@@ -12,6 +12,8 @@
 import { callAI } from "../utils/aiClient.js";
 import { getChatHistory, saveChatHistory } from "../utils/storage.js";
 import { getFallbackChatReply } from "../utils/demoData.js";
+import { showToast } from "../utils/toast.js";
+import { MAX_CHAT_INPUT_LENGTH } from "../config/config.js";
 
 function buildSystemPrompt(language) {
   const basePersona =
@@ -87,7 +89,7 @@ export function renderChat(container, t, language) {
         </div>
 
         <!-- Messages -->
-        <div class="chat-card__messages" id="chatMessages"></div>
+        <div class="chat-card__messages" id="chatMessages" aria-live="polite" aria-label="Chat conversation"></div>
 
         <!-- Starter Chips -->
         <div class="chat-card__starters" id="chatStarters">${starterChipsHtml}</div>
@@ -101,7 +103,9 @@ export function renderChat(container, t, language) {
             placeholder="${t.chat.placeholder}"
             autocomplete="off"
             aria-label="${t.chat.placeholder}"
+            maxlength="${MAX_CHAT_INPUT_LENGTH}"
           />
+          <span id="chatCharCount" style="font-size:0.72rem; color:var(--on-surface-variant); padding:0 4px; white-space:nowrap;"></span>
           <button type="button" class="btn btn--ghost btn--icon" id="chatVoiceBtn" title="${t.chat.voiceButton}" aria-label="${t.chat.voiceButton}">
             <span class="material-symbols-outlined" style="font-size: 20px;">mic</span>
           </button>
@@ -167,15 +171,27 @@ export function renderChat(container, t, language) {
     </div>
   `;
 
-  const messagesEl = container.querySelector("#chatMessages");
-  const formEl = container.querySelector("#chatForm");
-  const inputEl = container.querySelector("#chatInput");
-  const sendBtn = container.querySelector("#chatSendBtn");
-  const demoBtn = container.querySelector("#chatDemoBtn");
-  const voiceBtn = container.querySelector("#chatVoiceBtn");
-  const startersEl = container.querySelector("#chatStarters");
+  const messagesEl  = container.querySelector("#chatMessages");
+  const formEl      = container.querySelector("#chatForm");
+  const inputEl     = container.querySelector("#chatInput");
+  const sendBtn     = container.querySelector("#chatSendBtn");
+  const demoBtn     = container.querySelector("#chatDemoBtn");
+  const voiceBtn    = container.querySelector("#chatVoiceBtn");
+  const startersEl  = container.querySelector("#chatStarters");
+  const charCountEl = container.querySelector("#chatCharCount");
 
   renderMessageList(messagesEl, getChatHistory(), t);
+
+  // Character counter
+  if (charCountEl) {
+    inputEl.addEventListener("input", () => {
+      const len = inputEl.value.length;
+      charCountEl.textContent = len > MAX_CHAT_INPUT_LENGTH * 0.8
+        ? `${len}/${MAX_CHAT_INPUT_LENGTH}`
+        : "";
+      charCountEl.style.color = len >= MAX_CHAT_INPUT_LENGTH ? "var(--error)" : "var(--on-surface-variant)";
+    });
+  }
 
   // Handle hero search query
   if (heroQuery) {
@@ -193,7 +209,13 @@ export function renderChat(container, t, language) {
   const docScannerBtn = container.querySelector("#docScannerBtn");
   if (docScannerBtn) {
     docScannerBtn.addEventListener("click", () => {
-      alert("${t.chat.comingSoon}");
+      showToast(t.chat.comingSoon, "info");
+    });
+    docScannerBtn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        showToast(t.chat.comingSoon, "info");
+      }
     });
   }
 
@@ -212,9 +234,17 @@ export function renderChat(container, t, language) {
     const question = inputEl.value.trim();
     if (!question) return;
 
+    // Input length validation
+    if (question.length > MAX_CHAT_INPUT_LENGTH) {
+      showToast(`Message too long. Please keep it under ${MAX_CHAT_INPUT_LENGTH} characters.`, "warning");
+      return;
+    }
+
     inputEl.value = "";
+    if (charCountEl) charCountEl.textContent = "";
     inputEl.disabled = true;
     sendBtn.disabled = true;
+    sendBtn.setAttribute("aria-busy", "true");
 
     const history = getChatHistory();
     history.push({ role: "user", text: question, timestamp: Date.now() });
@@ -247,6 +277,7 @@ export function renderChat(container, t, language) {
     } finally {
       inputEl.disabled = false;
       sendBtn.disabled = false;
+      sendBtn.removeAttribute("aria-busy");
       inputEl.focus();
     }
   });
