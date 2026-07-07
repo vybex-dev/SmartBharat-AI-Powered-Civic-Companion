@@ -16,6 +16,7 @@ import { renderChat } from "./components/chat.js";
 import { renderSchemes } from "./components/schemes.js";
 import { renderDocuments } from "./components/documents.js";
 import { renderComplaints } from "./components/complaints.js";
+import { showToast } from "./utils/toast.js";
 
 const navbarEl = document.getElementById("navbar");
 const sidebarEl = document.getElementById("sidebar");
@@ -38,11 +39,21 @@ function navigateTo(view) {
   currentView = view;
   renderApp();
   window.scrollTo({ top: 0, behavior: "smooth" });
+
+  // Move focus to main content area so screen reader users
+  // know the page content has changed (SPA navigation pattern).
+  requestAnimationFrame(() => {
+    appEl.setAttribute("tabindex", "-1");
+    appEl.focus({ preventScroll: true });
+  });
 }
 
 function changeLanguage(languageCode) {
   currentLanguage = languageCode;
   setStoredLanguage(languageCode);
+  // Update the html[lang] attribute so assistive technologies
+  // and the browser's translation engine know the content language.
+  document.documentElement.lang = languageCode;
   renderApp();
 }
 
@@ -101,14 +112,14 @@ function renderSidebar() {
   const emergencyBtn = sidebarEl.querySelector("#sidebarEmergencyBtn");
   if (emergencyBtn) {
     emergencyBtn.addEventListener("click", () => {
-      alert(t.sidebar.emergencyAlert);
+      showToast(t.sidebar.emergencyAlert, "warning", 8000);
     });
   }
 
   const settingsBtn = sidebarEl.querySelector("#sidebarSettingsBtn");
   if (settingsBtn) {
     settingsBtn.addEventListener("click", () => {
-      alert(t.sidebar.settingsAlert);
+      showToast(t.sidebar.settingsAlert, "info");
     });
   }
 }

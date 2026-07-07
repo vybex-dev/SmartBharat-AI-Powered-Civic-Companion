@@ -9,9 +9,10 @@
 
 import { callAI } from "../utils/aiClient.js";
 import { parseAiJson } from "../utils/parseAiJson.js";
-import { COMPLAINT_CATEGORIES, COMPLAINT_STATUSES } from "../config/config.js";
+import { COMPLAINT_CATEGORIES, COMPLAINT_STATUSES, MAX_COMPLAINT_LENGTH, CATEGORY_HINT_DEBOUNCE_MS } from "../config/config.js";
 import { getComplaints, saveComplaint, updateComplaintStatus } from "../utils/storage.js";
 import { DEMO_COMPLAINT, getFallbackComplaintSummary } from "../utils/demoData.js";
+import { showToast } from "../utils/toast.js";
 
 const AUTO_CATEGORY_VALUE = "auto";
 
@@ -199,9 +200,9 @@ export function renderComplaints(container, t, language) {
           </div>
 
 
-          <p id="complaintFormError" class="error-text"></p>
+          <p id="complaintFormError" class="error-text" role="alert" aria-live="assertive"></p>
 
-          <button type="submit" class="btn btn--primary" id="submitComplaintBtn" style="width:100%;">
+          <button type="submit" class="btn btn--primary" id="submitComplaintBtn" style="width:100%;" aria-label="${t.complaints.submitButton}">
             ${t.complaints.submitButton}
             <span class="material-symbols-outlined" style="font-size:18px;">arrow_forward</span>
           </button>
@@ -268,13 +269,13 @@ export function renderComplaints(container, t, language) {
 
   // Wire up missing buttons
   if (viewAllBtn) {
-    viewAllBtn.addEventListener("click", () => alert("View All Complaints panel coming soon!"));
+    viewAllBtn.addEventListener("click", () => showToast("View All Complaints feature coming soon!", "info"));
   }
 
-  if (mapZoomIn) mapZoomIn.addEventListener("click", () => alert("Map zoom in functionality disabled in prototype."));
-  if (mapZoomOut) mapZoomOut.addEventListener("click", () => alert("Map zoom out functionality disabled in prototype."));
+  if (mapZoomIn)  mapZoomIn.addEventListener("click",  () => showToast("Map interaction is disabled in this prototype.", "info"));
+  if (mapZoomOut) mapZoomOut.addEventListener("click", () => showToast("Map interaction is disabled in this prototype.", "info"));
 
-  // AI hint on text input
+  // AI hint on text input — debounced to avoid firing on every keystroke
   const CATEGORY_KEYWORDS = {
     "Water Supply": ["water", "pipe", "leakage", "leak", "supply", "pani"],
     "Street Lighting": ["light", "lamp", "street", "bulb", "dark", "pole"],
@@ -283,21 +284,25 @@ export function renderComplaints(container, t, language) {
     "Sanitation": ["drain", "sewage", "toilet", "sewer", "gutter"],
   };
 
+  let hintTimer = null;
   descriptionEl.addEventListener("input", () => {
-    const val = descriptionEl.value.toLowerCase();
-    let detected = null;
-    for (const [cat, keywords] of Object.entries(CATEGORY_KEYWORDS)) {
-      if (keywords.some((kw) => val.includes(kw))) {
-        detected = cat;
-        break;
+    clearTimeout(hintTimer);
+    hintTimer = setTimeout(() => {
+      const val = descriptionEl.value.toLowerCase();
+      let detected = null;
+      for (const [cat, keywords] of Object.entries(CATEGORY_KEYWORDS)) {
+        if (keywords.some((kw) => val.includes(kw))) {
+          detected = cat;
+          break;
+        }
       }
-    }
-    if (detected && val.length > 5) {
-      aiHintText.textContent = detected;
-      aiHint.style.display = "flex";
-    } else {
-      aiHint.style.display = "none";
-    }
+      if (detected && val.length > 5) {
+        aiHintText.textContent = detected;
+        aiHint.style.display = "flex";
+      } else {
+        aiHint.style.display = "none";
+      }
+    }, CATEGORY_HINT_DEBOUNCE_MS);
   });
 
   demoBtn.addEventListener("click", () => {
@@ -317,6 +322,12 @@ export function renderComplaints(container, t, language) {
     const location = locationEl.value.trim();
     if (!description || !location) {
       formErrorEl.textContent = "Please fill out both the description and location fields.";
+      return;
+    }
+
+    // Input length validation
+    if (description.length > MAX_COMPLAINT_LENGTH) {
+      formErrorEl.textContent = `Description is too long. Please keep it under ${MAX_COMPLAINT_LENGTH} characters.`;
       return;
     }
 
