@@ -11,9 +11,10 @@ export default async function handler(req, res) {
 
   const geminiApiKey = process.env.SMART_BHARAT_GEMINI_API_KEY;
   const groqApiKey = process.env.SMART_BHARAT_GROQ_API_KEY;
-  const provider = process.env.SMART_BHARAT_AI_PROVIDER || "gemini";
+  const provider = (process.env.SMART_BHARAT_AI_PROVIDER || "gemini").toLowerCase().trim();
 
   if (!geminiApiKey && !groqApiKey) {
+    console.error("Vercel API error: Missing both API keys.");
     return res.status(500).json({ error: "API keys are not configured on Vercel." });
   }
 

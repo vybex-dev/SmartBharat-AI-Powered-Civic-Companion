@@ -146,10 +146,14 @@ export async function callAI(prompt, systemInstruction = "") {
     // If response.status === 404, we are likely running locally without Vercel Dev.
     // Fall back to local client-side logic.
   } catch (error) {
-    if (error.message.includes("Server API error") || error.message.includes("API keys are not configured")) {
-      throw error; // Rethrow to trigger fallback UI
+    if (error.message.includes("Server API error") || 
+        error.message.includes("API keys are not configured") ||
+        error.message.includes("Both providers failed") ||
+        error.message.includes("Unknown error from server API")) {
+      console.error("Vercel API endpoint failed:", error);
+      throw error; // Rethrow to trigger fallback UI instead of local logic
     }
-    // Network errors will just fall through to local logic
+    // Network errors (e.g. 404) will just fall through to local logic
   }
 
   // 2. Fallback to local client-side logic (works with local .env file)
