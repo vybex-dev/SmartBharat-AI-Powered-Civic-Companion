@@ -127,6 +127,32 @@ export async function callGroq(prompt, systemInstruction = "") {
  * @returns {Promise<string>} the model's plain-text reply.
  */
 export async function callAI(prompt, systemInstruction = "") {
+  // 1. Try Vercel Serverless API first (works when deployed on Vercel)
+  try {
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt, systemInstruction })
+    });
+    
+    if (response.ok) {
+      const data = await response.json();
+      if (data.reply) return data.reply;
+      throw new Error(data.error || "Unknown error from server API");
+    } else if (response.status !== 404) {
+      const data = await response.json().catch(() => ({}));
+      throw new Error(data.error || `Server API error: ${response.status}`);
+    }
+    // If response.status === 404, we are likely running locally without Vercel Dev.
+    // Fall back to local client-side logic.
+  } catch (error) {
+    if (error.message.includes("Server API error") || error.message.includes("API keys are not configured")) {
+      throw error; // Rethrow to trigger fallback UI
+    }
+    // Network errors will just fall through to local logic
+  }
+
+  // 2. Fallback to local client-side logic (works with local .env file)
   const { aiProvider } = await getRuntimeConfig();
   const provider = aiProvider === "groq" ? "groq" : "gemini";
   const primaryCall = provider === "groq" ? callGroq : callGemini;
