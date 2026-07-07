@@ -1,8 +1,9 @@
 # 🇮🇳 Smart Bharat
+
 ### AI-Powered Civic Companion
 
 > Built for **Google for Developers × Devengers — "PromptWars" (Build with AI)** Hackathon
-> **Challenge:** *Smart Bharat – AI-Powered Civic Companion*
+> **Challenge:** _Smart Bharat – AI-Powered Civic Companion_
 
 Smart Bharat is a GenAI-powered web app that helps Indian citizens understand government services, get matched to relevant schemes, know exactly what paperwork to gather, and track civic complaints to resolution — all in plain language, in English or Hindi.
 
@@ -10,9 +11,7 @@ Smart Bharat is a GenAI-powered web app that helps Indian citizens understand go
   <a href="https://smart-bharat-ai-powered-civic-compa-omega.vercel.app/">
     <img src="https://img.shields.io/badge/Live%20Demo-View%20App-6C5CE7?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
   </a>
-  <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvybex-dev%2FSmartBharat-AI-Powered-Civic-Companion">
-    <img src="https://vercel.com/button" alt="Deploy with Vercel" />
-  </a>
+  
 </p>
 
 ---
@@ -43,27 +42,27 @@ Smart Bharat addresses this by putting a generative-AI companion at the center o
 
 Each of the six hackathon requirements is implemented as a distinct, working feature. Below, each requirement links to exactly where it lives in the code.
 
-| # | Requirement | Implementation |
-|---|---|---|
-| 1 | **Simplify complex government information** | `src/components/chat.js` — the AI Companion's system prompt (`buildSystemPrompt`) instructs the model to act as a knowledgeable, friendly Indian civic assistant that avoids bureaucratic jargon and explains things in plain language. |
-| 2 | **Answer citizen queries** | `src/components/chat.js` — the same AI Companion chat interface handles free-form questions like *"How do I apply for a ration card"* or *"What is Ayushman Bharat"*. Five clickable starter-question chips guarantee a reliable, on-brief demo even without typing, and a voice-input mic button (Web Speech API) lets citizens ask by speaking. |
-| 3 | **Recommend relevant public services** | `src/components/schemes.js` — the Service Recommendation Engine takes a free-text description of the citizen's situation, sends it alongside a curated list of 20 real government schemes (`src/data/schemes.json`) to the AI, and asks it to return the top 3 relevant matches with a plain-language reason for each — rendered as cards with official links. |
-| 4 | **Assist with document requirements** | `src/components/documents.js` — the Document Requirement Assistant takes a goal (e.g. "passport", "driving license", "caste certificate") and asks the AI for a structured JSON checklist of required documents, ordered steps, and an estimated processing time, rendered as a checkable list. |
-| 5 | **Track complaints** | `src/components/complaints.js` — a citizen describes an issue and a location (by typing or by voice). The AI auto-classifies it into a department (Roads/Water/Electricity/Sanitation/Other) and writes an official-sounding summary. Complaints are saved to `localStorage` with an ID, timestamp, and status, and shown in a timeline tracker with status badges and a demo-only "simulate progress" button that advances Submitted → In Review → Resolved. |
-| 6 | **Multilingual support** | `src/utils/translations.js` + language toggle in `src/components/navbar.js` — a navbar toggle switches the whole UI between English and Hindi, persisted in `localStorage`. All static text is looked up from the `translations` dictionary, and every AI-generated response (chat, scheme reasons, checklists, complaint summaries) is requested directly in the selected language by appending an explicit language instruction to the prompt — see the `languageInstruction` variable in `chat.js`, `schemes.js`, `documents.js`, and `complaints.js`. |
+| #   | Requirement                                 | Implementation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| --- | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **Simplify complex government information** | `src/components/chat.js` — the AI Companion's system prompt (`buildSystemPrompt`) instructs the model to act as a knowledgeable, friendly Indian civic assistant that avoids bureaucratic jargon and explains things in plain language.                                                                                                                                                                                                                                                                                                                   |
+| 2   | **Answer citizen queries**                  | `src/components/chat.js` — the same AI Companion chat interface handles free-form questions like _"How do I apply for a ration card"_ or _"What is Ayushman Bharat"_. Five clickable starter-question chips guarantee a reliable, on-brief demo even without typing, and a voice-input mic button (Web Speech API) lets citizens ask by speaking.                                                                                                                                                                                                         |
+| 3   | **Recommend relevant public services**      | `src/components/schemes.js` — the Service Recommendation Engine takes a free-text description of the citizen's situation, sends it alongside a curated list of 20 real government schemes (`src/data/schemes.json`) to the AI, and asks it to return the top 3 relevant matches with a plain-language reason for each — rendered as cards with official links.                                                                                                                                                                                            |
+| 4   | **Assist with document requirements**       | `src/components/documents.js` — the Document Requirement Assistant takes a goal (e.g. "passport", "driving license", "caste certificate") and asks the AI for a structured JSON checklist of required documents, ordered steps, and an estimated processing time, rendered as a checkable list.                                                                                                                                                                                                                                                           |
+| 5   | **Track complaints**                        | `src/components/complaints.js` — a citizen describes an issue and a location (by typing or by voice). The AI auto-classifies it into a department (Roads/Water/Electricity/Sanitation/Other) and writes an official-sounding summary. Complaints are saved to `localStorage` with an ID, timestamp, and status, and shown in a timeline tracker with status badges and a demo-only "simulate progress" button that advances Submitted → In Review → Resolved.                                                                                             |
+| 6   | **Multilingual support**                    | `src/utils/translations.js` + language toggle in `src/components/navbar.js` — a navbar toggle switches the whole UI between English and Hindi, persisted in `localStorage`. All static text is looked up from the `translations` dictionary, and every AI-generated response (chat, scheme reasons, checklists, complaint summaries) is requested directly in the selected language by appending an explicit language instruction to the prompt — see the `languageInstruction` variable in `chat.js`, `schemes.js`, `documents.js`, and `complaints.js`. |
 
 ---
 
 ## 3. Tech Stack
 
-| Layer | Choice | Why |
-|---|---|---|
-| Frontend | Plain HTML/CSS + vanilla JS (ES modules) | Zero build step, zero config risk — runs immediately, which matters most under hackathon time pressure. |
-| AI (primary) | Google Gemini (`gemini-2.0-flash`) | Fast, free-tier friendly, strong multilingual generation. |
-| AI (fallback) | Groq (`llama-3.1-8b-instant`, OpenAI-compatible endpoint) | Automatic fallback if Gemini rate-limits mid-demo — see `callAI()` in `src/utils/aiClient.js`. |
-| Voice Input | Web Speech API (`SpeechRecognition`) | Native browser speech-to-text for the chat and complaint forms, in English or Hindi, with no extra dependency. |
-| Persistence | `localStorage` | No backend/database needed; complaints, chat history, and language preference all persist across reloads instantly. |
-| Fonts | "Be Vietnam Pro" + Material Symbols (Google Fonts) | Clean, modern type paired with a consistent icon set for a polished civic-tech look. |
+| Layer         | Choice                                                    | Why                                                                                                                 |
+| ------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Frontend      | Plain HTML/CSS + vanilla JS (ES modules)                  | Zero build step, zero config risk — runs immediately, which matters most under hackathon time pressure.             |
+| AI (primary)  | Google Gemini (`gemini-2.0-flash`)                        | Fast, free-tier friendly, strong multilingual generation.                                                           |
+| AI (fallback) | Groq (`llama-3.1-8b-instant`, OpenAI-compatible endpoint) | Automatic fallback if Gemini rate-limits mid-demo — see `callAI()` in `src/utils/aiClient.js`.                      |
+| Voice Input   | Web Speech API (`SpeechRecognition`)                      | Native browser speech-to-text for the chat and complaint forms, in English or Hindi, with no extra dependency.      |
+| Persistence   | `localStorage`                                            | No backend/database needed; complaints, chat history, and language preference all persist across reloads instantly. |
+| Fonts         | "Be Vietnam Pro" + Material Symbols (Google Fonts)        | Clean, modern type paired with a consistent icon set for a polished civic-tech look.                                |
 
 ---
 
@@ -88,31 +87,36 @@ Each of the six hackathon requirements is implemented as a distinct, working fea
 > **Live demo:** [smart-bharat-ai-powered-civic-compa-omega.vercel.app](https://smart-bharat-ai-powered-civic-compa-omega.vercel.app/)
 
 1. **Add your API key(s)** in a local `.env` file:
+
    ```bash
    cp .env.example .env
    ```
 
    Then edit `.env`:
+
    ```bash
    SMART_BHARAT_GEMINI_API_KEY=YOUR_GEMINI_API_KEY_HERE
    SMART_BHARAT_GROQ_API_KEY=YOUR_GROQ_API_KEY_HERE
    SMART_BHARAT_AI_PROVIDER=gemini
    ```
+
    You only need **one** working key for the app to function; the other is used automatically as a fallback if it's configured too.
 
    `.env` is intentionally ignored by Git so API keys are not pushed to GitHub. Keep `.env.example` committed as the safe template.
 
 2. **Run it.** Since this is plain HTML/JS with no build step, any local static server works. From the project folder:
+
    ```bash
    npx live-server
    ```
+
    or, with VS Code's **Live Server** extension, right-click `index.html` → "Open with Live Server".
 
    > **Note:** opening `index.html` directly via `file://` will not work in most browsers, because ES modules and `fetch()` (used to load `schemes.json` and `.env`) require `http://`. Always serve it through a local server.
 
 3. **Open the app** in your browser (Live Server will open it automatically, typically at `http://127.0.0.1:8080`).
 
-4. *(Optional)* For voice input, use Chrome or Edge — the Web Speech API has the widest support there. If unsupported, the mic button is automatically disabled and the app still works fully by typing.
+4. _(Optional)_ For voice input, use Chrome or Edge — the Web Speech API has the widest support there. If unsupported, the mic button is automatically disabled and the app still works fully by typing.
 
 ---
 
@@ -162,6 +166,7 @@ Every feature talks to the model through a **single shared entry point**, `callA
 ## 8. Future Scope
 
 With more time, Smart Bharat could add:
+
 - Real-time complaint routing to actual municipal APIs or email where available.
 - A lightweight backend so complaints and chat history sync across devices instead of being local to one browser.
 - Support for more Indian languages beyond English and Hindi — the translation architecture already generalizes to any language.
