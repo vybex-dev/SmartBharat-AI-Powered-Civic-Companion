@@ -7,10 +7,15 @@
 // localStorage directly.
 // ============================================================
 
+import {
+  MAX_CHAT_HISTORY_MESSAGES,
+  MAX_STORAGE_ENTRY_SIZE,
+} from "../config/config.js";
+
 const STORAGE_KEYS = {
-  COMPLAINTS: "smartBharat_complaints",
+  COMPLAINTS:   "smartBharat_complaints",
   CHAT_HISTORY: "smartBharat_chatHistory",
-  LANGUAGE: "smartBharat_language",
+  LANGUAGE:     "smartBharat_language",
 };
 
 /** Safely reads and parses JSON from localStorage, with a fallback. */
@@ -41,6 +46,18 @@ export function getComplaints() {
 
 export function saveComplaint(complaint) {
   const complaints = getComplaints();
+
+  // Guard: never write a single entry that is unreasonably large
+  // (prevents runaway AI summaries bloating localStorage).
+  const entrySize = (complaint.description?.length || 0) + (complaint.summary?.length || 0);
+  if (entrySize > MAX_STORAGE_ENTRY_SIZE) {
+    complaint = {
+      ...complaint,
+      description: complaint.description?.slice(0, 1000) || complaint.description,
+      summary: complaint.summary?.slice(0, 500) || complaint.summary,
+    };
+  }
+
   complaints.unshift(complaint); // newest first
   writeJSON(STORAGE_KEYS.COMPLAINTS, complaints);
   return complaints;
@@ -63,7 +80,9 @@ export function getChatHistory() {
 }
 
 export function saveChatHistory(messages) {
-  writeJSON(STORAGE_KEYS.CHAT_HISTORY, messages);
+  // Cap history length so localStorage doesn't grow without bound.
+  const capped = messages.slice(-MAX_CHAT_HISTORY_MESSAGES);
+  writeJSON(STORAGE_KEYS.CHAT_HISTORY, capped);
 }
 
 export function clearChatHistory() {
