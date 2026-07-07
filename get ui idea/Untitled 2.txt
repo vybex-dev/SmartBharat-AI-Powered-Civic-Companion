@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart Bharat | Government Services Directory</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "error": "#ba1a1a",
+                "outline-variant": "#c2c6d6",
+                "surface-container-high": "#e6e8ea",
+                "error-container": "#ffdad6",
+                "background": "#f8fafc",
+                "surface-container-lowest": "#ffffff",
+                "on-secondary": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "on-tertiary-fixed": "#002113",
+                "on-primary-fixed": "#001a42",
+                "on-tertiary-fixed-variant": "#005236",
+                "surface-variant": "#e0e3e5",
+                "on-error-container": "#93000a",
+                "primary": "#3b82f6",
+                "surface-container-highest": "#e0e3e5",
+                "on-surface": "#191c1e",
+                "surface": "#f8fafc",
+                "surface-container-low": "#f1f5f9",
+                "surface-bright": "#f8fafc",
+                "secondary-fixed-dim": "#ffb690",
+                "tertiary-fixed-dim": "#4edea3",
+                "surface-dim": "#d8dadc",
+                "surface-container": "#eceef0",
+                "on-primary-container": "#ffffff",
+                "primary-fixed-dim": "#adc6ff",
+                "tertiary-fixed": "#6ffbbe",
+                "outline": "#727785",
+                "inverse-primary": "#adc6ff",
+                "on-surface-variant": "#424754",
+                "on-primary": "#ffffff",
+                "tertiary": "#10b981",
+                "primary-container": "#3b82f6",
+                "tertiary-container": "#10b981",
+                "inverse-on-surface": "#eff1f3",
+                "secondary-container": "#f97316",
+                "on-tertiary-container": "#ffffff",
+                "secondary-fixed": "#ffdbca",
+                "on-primary-fixed-variant": "#004395",
+                "on-secondary-container": "#ffffff",
+                "primary-fixed": "#d8e2ff",
+                "secondary": "#f97316",
+                "inverse-surface": "#2d3133",
+                "on-secondary-fixed": "#341100",
+                "on-secondary-fixed-variant": "#783200",
+                "surface-tint": "#3b82f6",
+                "on-background": "#191c1e",
+                "on-error": "#ffffff"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.5rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "sm": "12px",
+                "margin-desktop": "64px",
+                "base": "8px",
+                "xl": "80px",
+                "lg": "48px",
+                "md": "24px",
+                "margin-mobile": "16px",
+                "gutter": "24px",
+                "xs": "4px",
+                "container-max": "1280px",
+                "gutter-desktop": "24px"
+        },
+        "fontFamily": {
+                "display-lg": ["Be Vietnam Pro"],
+                "label-lg": ["Be Vietnam Pro"],
+                "body-lg": ["Be Vietnam Pro"],
+                "body-md": ["Be Vietnam Pro"],
+                "label-sm": ["Be Vietnam Pro"],
+                "headline-lg": ["Be Vietnam Pro"],
+                "headline-md": ["Be Vietnam Pro"],
+                "headline-lg-mobile": ["Be Vietnam Pro"],
+                "headline-xl": ["Be Vietnam Pro"]
+        },
+        "fontSize": {
+                "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+        }
+      },
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-ai {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scroll-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Soft Multi-color Gradient Background */
+        .bg-mesh-gradient {
+            background-color: #f8fafc;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(249, 115, 22, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.12) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(59, 130, 246, 0.12) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="bg-mesh-gradient text-on-surface font-body-md min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface-container-lowest/80 backdrop-blur-md sticky top-0 z-50 border-b border-outline-variant">
+<div class="flex justify-between items-center px-gutter-desktop max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Smart Bharat</h1>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-primary border-b-2 border-primary font-bold transition-colors" href="#">Services</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Complaints</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Schemes</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Tracking</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center bg-surface-container-low/50 border border-outline-variant rounded-full px-4 py-1.5 focus-within:ring-2 focus-within:ring-primary">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md px-2 w-48" placeholder="Search services..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high rounded-full transition-all">language</button>
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high rounded-full transition-all">account_circle</button>
+</div>
+</div>
+</header>
+<div class="max-w-container-max mx-auto flex">
+<!-- SideNavBar (Desktop Only) -->
+<aside class="hidden md:flex flex-col h-[calc(100vh-64px)] py-6 px-4 w-64 sticky top-16 bg-surface-container-low/30 backdrop-blur-sm border-r border-outline-variant/30 overflow-y-auto">
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-label-lg text-on-surface font-bold">Ravi Kumar</p>
+<p class="text-[12px] text-on-surface-variant">Citizen Profile</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-lg">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary text-on-primary rounded-lg font-bold shadow-sm transition-all" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="font-label-lg">Public Services</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">report_problem</span>
+<span class="font-label-lg">Grievance Redressal</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-lg">My Documents</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="font-label-lg">AI Assistant</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 space-y-1 border-t border-outline-variant">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-lg">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-lg">Help</span>
+</a>
+<button class="w-full mt-4 bg-error text-on-error py-3 rounded-lg font-bold flex items-center justify-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">emergency</span>
+                    Emergency Support
+                </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 min-w-0 pb-24 md:pb-12">
+<!-- Hero / Search Section -->
+<section class="relative h-64 md:h-80 overflow-hidden bg-[#1e293b]">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-transparent flex flex-col justify-center px-6 md:px-12 text-on-primary">
+<h2 class="font-headline-xl text-headline-xl mb-4">Every Service, <br class="md:hidden"/>One Platform.</h2>
+<p class="font-body-lg text-body-lg max-w-xl opacity-90">Find and apply for government schemes using our AI-powered directory. Direct, transparent, and accessible.</p>
+</div>
+</section>
+<!-- Quick Filters -->
+<div class="px-6 md:px-12 py-8">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Browse Categories</h3>
+<button class="text-primary font-bold flex items-center gap-1 hover:underline">
+                        View All Departments <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="flex gap-4 overflow-x-auto scroll-hide pb-2">
+<button class="flex-shrink-0 px-6 py-3 bg-primary text-on-primary rounded-full font-bold flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined">school</span> Education
+                    </button>
+<button class="flex-shrink-0 px-6 py-3 bg-surface-container-high text-on-surface hover:bg-surface-variant rounded-full font-bold flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined">medical_services</span> Healthcare
+                    </button>
+<button class="flex-shrink-0 px-6 py-3 bg-surface-container-high text-on-surface hover:bg-surface-variant rounded-full font-bold flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined">agriculture</span> Agriculture
+                    </button>
+<button class="flex-shrink-0 px-6 py-3 bg-surface-container-high text-on-surface hover:bg-surface-variant rounded-full font-bold flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined">payments</span> Finance
+                    </button>
+<button class="flex-shrink-0 px-6 py-3 bg-surface-container-high text-on-surface hover:bg-surface-variant rounded-full font-bold flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined">commute</span> Transport
+                    </button>
+</div>
+</div>
+<!-- Bento Grid of Services -->
+<section class="px-6 md:px-12 py-8">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Featured AI Service Card -->
+<div class="lg:col-span-2 glass-ai p-8 rounded-3xl relative overflow-hidden flex flex-col md:flex-row gap-8 shadow-sm">
+<div class="flex-1 z-10">
+<span class="inline-flex items-center gap-1 bg-secondary text-on-secondary px-3 py-1 rounded-full text-[12px] font-bold mb-4 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span> AI RECOMMENDED
+                            </span>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Ayushman Bharat - Health Cover</h4>
+<p class="text-on-surface-variant mb-6 text-body-md">Get up to ₹5 Lakh per family per year for secondary and tertiary care hospitalization across public and private hospitals.</p>
+<div class="flex flex-wrap gap-3 mt-auto">
+<button class="px-6 py-3 bg-primary text-on-primary rounded-xl font-bold active:scale-95 transition-transform flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined">verified_user</span> Eligibility Check
+                                </button>
+<button class="px-6 py-3 bg-gradient-to-r from-secondary to-primary text-on-primary rounded-xl font-bold active:scale-95 transition-transform flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined">magic_button</span> Apply with AI
+                                </button>
+</div>
+</div>
+<div class="w-full md:w-64 h-48 md:h-auto rounded-2xl overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover" data-alt="A professional medical environment showing a diverse group of doctors and patients in a clean, modern Indian hospital setting. The lighting is soft and bright, using the primary navy and secondary indigo colors of the brand identity. The style is professional, high-contrast, and authoritative yet warm." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbkunSebE2798Ti8o6ooxQKj54JSN9pb35ZZWw-fNUprV6jmV2CabwwED2jDkJ8MTPyFQyxqwM-YbM2tnRfZxCUqhAEADPx3JgX4_bt1FqMa4pdG_l3k0kBSMxRj-4NIJU5kdjyGzsMNh61NsUdXVaiG_Kj5l9uCO4m_LBFZGBmgHqJZqhwThXyJYTbCYmWrKB_dvt_HqjzgKirQ7EDrpz3U9dRJ69Ha4KWU5wap4ozY8buJhW_4tO2z0cBDyvlx3JJ8mS3jZXPEM"/>
+</div>
+</div>
+<!-- Side Card 1 -->
+<div class="bg-surface-container-lowest/60 backdrop-blur-sm border border-outline-variant p-6 rounded-3xl flex flex-col shadow-sm">
+<div class="w-12 h-12 bg-tertiary-container text-on-tertiary-container rounded-2xl flex items-center justify-center mb-4 shadow-sm">
+<span class="material-symbols-outlined">agriculture</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">PM Kisan Samman Nidhi</h4>
+<p class="text-on-surface-variant text-body-md mb-6">Direct income support of ₹6,000 per year for all landholding farmer families in the country.</p>
+<div class="mt-auto space-y-3">
+<button class="w-full py-2.5 border border-primary text-primary rounded-lg font-bold hover:bg-primary/5 transition-colors">Eligibility</button>
+<button class="w-full py-2.5 bg-primary text-on-primary rounded-lg font-bold flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">magic_button</span> Apply with AI
+                            </button>
+</div>
+</div>
+<!-- Service Card 2 -->
+<div class="bg-surface-container-lowest/60 backdrop-blur-sm border border-outline-variant p-6 rounded-3xl flex flex-col shadow-sm">
+<div class="w-12 h-12 bg-secondary-container text-on-secondary-container rounded-2xl flex items-center justify-center mb-4 shadow-sm">
+<span class="material-symbols-outlined">school</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Scholarship Program</h4>
+<p class="text-on-surface-variant text-body-md mb-6">Support for students from minority communities for pre-matric and post-matric education levels.</p>
+<div class="mt-auto space-y-3">
+<button class="w-full py-2.5 border border-primary text-primary rounded-lg font-bold hover:bg-primary/5">Eligibility</button>
+<button class="w-full py-2.5 bg-primary text-on-primary rounded-lg font-bold flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">magic_button</span> Apply with AI
+                            </button>
+</div>
+</div>
+<!-- Service Card 3 -->
+<div class="bg-surface-container-lowest/60 backdrop-blur-sm border border-outline-variant p-6 rounded-3xl flex flex-col shadow-sm">
+<div class="w-12 h-12 bg-surface-container-high text-primary rounded-2xl flex items-center justify-center mb-4 shadow-sm">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Mudra Loan Scheme</h4>
+<p class="text-on-surface-variant text-body-md mb-6">Collateral-free loans up to ₹10 Lakh for small business units for manufacturing or trading.</p>
+<div class="mt-auto space-y-3">
+<button class="w-full py-2.5 border border-primary text-primary rounded-lg font-bold hover:bg-primary/5">Eligibility</button>
+<button class="w-full py-2.5 bg-primary text-on-primary rounded-lg font-bold flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">magic_button</span> Apply with AI
+                            </button>
+</div>
+</div>
+<!-- Service Card 4 -->
+<div class="bg-surface-container-lowest/60 backdrop-blur-sm border border-outline-variant p-6 rounded-3xl flex flex-col shadow-sm">
+<div class="w-12 h-12 bg-tertiary text-on-tertiary rounded-2xl flex items-center justify-center mb-4 shadow-sm">
+<span class="material-symbols-outlined">commute</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">National Driver License</h4>
+<p class="text-on-surface-variant text-body-md mb-6">Seamlessly apply for, renew, or update your Smart Card Driving License through the Sarathi portal.</p>
+<div class="mt-auto space-y-3">
+<button class="w-full py-2.5 border border-primary text-primary rounded-lg font-bold hover:bg-primary/5">Check Status</button>
+<button class="w-full py-2.5 bg-primary text-on-primary rounded-lg font-bold flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">magic_button</span> Apply with AI
+                            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- How it Works / AI Companion Interface -->
+<section class="mx-6 md:mx-12 my-12 bg-primary text-on-primary rounded-[40px] p-8 md:p-16 flex flex-col lg:flex-row items-center gap-12 overflow-hidden relative shadow-xl">
+<div class="absolute -bottom-20 -right-20 w-80 h-80 bg-secondary/30 rounded-full blur-3xl"></div>
+<div class="flex-1 z-10">
+<h2 class="font-headline-xl text-headline-xl mb-6">Simplifying Governance with BharatAI</h2>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<div>
+<h5 class="font-headline-md text-headline-md leading-tight">Tell us your situation</h5>
+<p class="opacity-90">"I am a farmer looking for machinery subsidies." AI scans 2,000+ schemes instantly.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div>
+<h5 class="font-headline-md text-headline-md leading-tight">Auto-Fill Documentation</h5>
+<p class="opacity-90">AI extracts details from your Aadhaar vault to pre-fill application forms accurately.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">task_alt</span>
+</div>
+<div>
+<h5 class="font-headline-md text-headline-md leading-tight">Instant Submission</h5>
+<p class="opacity-90">Verified applications are submitted directly to the relevant department with high priority.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full lg:w-96 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-2xl relative">
+<div class="flex items-center gap-2 mb-4 border-b border-white/20 pb-4">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-bold text-white">BharatAI Assistant</span>
+</div>
+<div class="space-y-4 h-64 overflow-y-auto scroll-hide pr-2">
+<div class="bg-white/20 p-3 rounded-2xl text-body-md rounded-tl-none self-start text-white">
+                            नमस्ते! How can I help you today? You can ask about healthcare, education, or loans.
+                        </div>
+<div class="bg-secondary text-on-secondary p-3 rounded-2xl text-body-md rounded-tr-none self-end ml-12 shadow-sm">
+                            I need help applying for a student scholarship.
+                        </div>
+<div class="bg-white/20 p-3 rounded-2xl text-body-md rounded-tl-none self-start flex gap-2 text-white">
+<span class="material-symbols-outlined text-secondary animate-pulse">auto_awesome</span>
+<span>Based on your profile, I found the "Post-Matric Scholarship". Shall I check your eligibility?</span>
+</div>
+</div>
+<div class="mt-4 flex gap-2">
+<input class="flex-1 bg-white/10 border border-white/20 rounded-full px-4 py-2 text-body-md text-white placeholder-white/60" placeholder="Type here..." type="text"/>
+<button class="w-10 h-10 bg-white text-primary rounded-full flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Mobile Navigation Shell -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-lowest/90 backdrop-blur-md border-t border-outline-variant rounded-t-2xl shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-6 py-1 shadow-sm" href="#">
+<span class="material-symbols-outlined">apps</span>
+<span class="font-label-sm">Services</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-sm">AI Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="bg-surface-container-low/50 backdrop-blur-sm border-t border-outline-variant w-full py-12 px-gutter-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between">
+<div class="mb-8 md:mb-0">
+<h2 class="font-headline-md text-headline-md font-bold text-primary mb-2">Smart Bharat</h2>
+<p class="text-on-surface-variant max-w-sm mb-4">Empowering citizens through digital governance and AI-driven accessibility. A Government of India Initiative.</p>
+<p class="text-[12px] text-on-surface-variant opacity-70">© 2024 Smart Bharat - Government of India Initiative</p>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="flex flex-col gap-3">
+<p class="font-bold text-primary mb-2">Resources</p>
+<a class="text-on-surface-variant hover:text-primary underline" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary underline" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-3">
+<p class="font-bold text-primary mb-2">Support</p>
+<a class="text-on-surface-variant hover:text-primary underline" href="#">Accessibility Statement</a>
+<a class="text-on-surface-variant hover:text-primary underline" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+<!-- FAB for AI (Contextual) -->
+<button class="fixed bottom-24 right-6 md:bottom-12 md:right-12 w-14 h-14 bg-gradient-to-tr from-secondary to-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center z-50 hover:scale-110 active:scale-95 transition-all group" id="ai-fab">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform">auto_awesome</span>
+</button>
+<script>
+        // Micro-interactions and FAB logic
+        const fab = document.getElementById('ai-fab');
+        if(fab) {
+            fab.addEventListener('click', () => {
+                alert('Opening BharatAI Companion...');
+            });
+        }
+
+        // Sticky header transparency effect on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+                header.classList.remove('border-b');
+                header.classList.remove('bg-surface-container-lowest/80');
+                header.classList.add('bg-surface-container-lowest/95');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('border-b');
+                header.classList.add('bg-surface-container-lowest/80');
+                header.classList.remove('bg-surface-container-lowest/95');
+            }
+        });
+    </script>
+</body></html>

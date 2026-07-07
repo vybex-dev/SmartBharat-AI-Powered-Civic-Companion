@@ -1,0 +1,162 @@
+[
+  {
+    "id": "pmay",
+    "name": "Pradhan Mantri Awas Yojana (PMAY)",
+    "category": "Housing",
+    "description": "Central government scheme providing financial assistance to build or buy a pucca house for economically weaker sections, low income groups, and rural households.",
+    "eligibility": "Families without a pucca house; income criteria vary by urban (PMAY-U) or rural (PMAY-G) component; priority to women, SC/ST, and differently-abled applicants.",
+    "link": "https://pmay-urban.gov.in/"
+  },
+  {
+    "id": "ayushman-bharat",
+    "name": "Ayushman Bharat – Pradhan Mantri Jan Arogya Yojana (PM-JAY)",
+    "category": "Healthcare",
+    "description": "Provides health insurance cover of up to ₹5 lakh per family per year for secondary and tertiary hospital care, cashless and paperless at empanelled hospitals.",
+    "eligibility": "Families identified as economically vulnerable under SECC 2011 database; check eligibility on the official portal using ration card or Aadhaar.",
+    "link": "https://pmjay.gov.in/"
+  },
+  {
+    "id": "pm-kisan",
+    "name": "PM-KISAN Samman Nidhi",
+    "category": "Agriculture",
+    "description": "Income support of ₹6,000 per year, paid in three equal instalments directly into bank accounts, to help landholding farmer families with agricultural expenses.",
+    "eligibility": "All landholding farmer families, subject to certain exclusions such as income-tax payees and institutional landholders.",
+    "link": "https://pmkisan.gov.in/"
+  },
+  {
+    "id": "pm-ujjwala",
+    "name": "Pradhan Mantri Ujjwala Yojana (PMUY)",
+    "category": "Energy & Household",
+    "description": "Provides deposit-free LPG gas connections to women from poor households to replace unsafe cooking fuels like firewood and coal.",
+    "eligibility": "Adult women from BPL/poor households without an existing LPG connection.",
+    "link": "https://www.pmuy.gov.in/"
+  },
+  {
+    "id": "sukanya-samriddhi",
+    "name": "Sukanya Samriddhi Yojana",
+    "category": "Savings & Girl Child Welfare",
+    "description": "A small-savings scheme for the education and marriage expenses of a girl child, offering a high, government-guaranteed interest rate.",
+    "eligibility": "Parents/guardians can open an account for a girl child below 10 years of age, at a post office or authorised bank.",
+    "link": "https://www.myscheme.gov.in/schemes/ssy"
+  },
+  {
+    "id": "national-scholarship-portal",
+    "name": "National Scholarship Portal (NSP)",
+    "category": "Education",
+    "description": "One-stop platform for students to apply for pre-matric, post-matric, and merit-based central and state government scholarships.",
+    "eligibility": "Varies by scheme; generally students from economically weaker sections, minorities, SC/ST/OBC categories, or those with disabilities.",
+    "link": "https://scholarships.gov.in/"
+  },
+  {
+    "id": "eshram",
+    "name": "e-Shram Card",
+    "category": "Labour & Employment",
+    "description": "National database for unorganised sector workers, providing a portable e-Shram card that helps access social security schemes and benefits.",
+    "eligibility": "Unorganised sector workers aged 16-59, such as migrant workers, gig workers, street vendors, construction workers, and domestic help.",
+    "link": "https://eshram.gov.in/"
+  },
+  {
+    "id": "rti",
+    "name": "Right to Information (RTI)",
+    "category": "Governance & Transparency",
+    "description": "Lets any citizen formally request information from a public authority, promoting transparency and accountability in government functioning.",
+    "eligibility": "Any Indian citizen can file an RTI application online or offline.",
+    "link": "https://rtionline.gov.in/"
+  },
+  {
+    "id": "digilocker",
+    "name": "DigiLocker",
+    "category": "Digital Documents",
+    "description": "Cloud-based platform to store, access, and share official documents like Aadhaar, PAN, driving licence, and academic certificates digitally.",
+    "eligibility": "Any Indian citizen with a mobile number linked to Aadhaar can create a free account.",
+    "link": "https://www.digilocker.gov.in/"
+  },
+  {
+    "id": "pmjdy",
+    "name": "Pradhan Mantri Jan Dhan Yojana (PMJDY)",
+    "category": "Financial Inclusion",
+    "description": "Provides universal access to banking with zero-balance savings accounts, a RuPay debit card, and accident insurance cover.",
+    "eligibility": "Any Indian citizen without a bank account, especially in unbanked or underbanked households.",
+    "link": "https://www.pmjdy.gov.in/"
+  },
+  {
+    "id": "pmfby",
+    "name": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+    "category": "Agriculture",
+    "description": "Crop insurance scheme offering financial support to farmers in case of crop failure due to natural calamities, pests, or diseases, at a low premium.",
+    "eligibility": "Farmers, including sharecroppers and tenant farmers, growing notified crops in notified areas.",
+    "link": "https://pmfby.gov.in/"
+  },
+  {
+    "id": "atal-pension",
+    "name": "Atal Pension Yojana (APY)",
+    "category": "Pension & Retirement",
+    "description": "Guarantees a fixed monthly pension of ₹1,000 to ₹5,000 after age 60, aimed mainly at workers in the unorganised sector.",
+    "eligibility": "Indian citizens aged 18-40 with a savings bank account or post office account.",
+    "link": "https://www.myscheme.gov.in/schemes/apy"
+  },
+  {
+    "id": "pmjjby",
+    "name": "Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)",
+    "category": "Insurance",
+    "description": "Renewable one-year life insurance cover of ₹2 lakh at a very low annual premium in case of death of the insured, for any reason.",
+    "eligibility": "Indian citizens aged 18-50 with a bank or post office account, via auto-debit consent.",
+    "link": "https://www.jansuraksha.gov.in/"
+  },
+  {
+    "id": "pmsby",
+    "name": "Pradhan Mantri Suraksha Bima Yojana (PMSBY)",
+    "category": "Insurance",
+    "description": "Accidental death and disability cover of up to ₹2 lakh at a very low annual premium.",
+    "eligibility": "Indian citizens aged 18-70 with a bank or post office account, via auto-debit consent.",
+    "link": "https://www.jansuraksha.gov.in/"
+  },
+  {
+    "id": "mudra",
+    "name": "Pradhan Mantri MUDRA Yojana",
+    "category": "Business & Entrepreneurship",
+    "description": "Provides collateral-free loans up to ₹10 lakh to non-corporate, non-farm small and micro enterprises for starting or expanding a business.",
+    "eligibility": "Small business owners, shopkeepers, artisans, and micro-entrepreneurs seeking loans for income-generating activity.",
+    "link": "https://www.mudra.org.in/"
+  },
+  {
+    "id": "pmkvy",
+    "name": "Pradhan Mantri Kaushal Vikas Yojana (PMKVY)",
+    "category": "Skill Development",
+    "description": "Offers free, short-duration skill training and certification to help youth gain industry-relevant skills and improve employability.",
+    "eligibility": "Indian youth, especially school/college dropouts and unemployed persons seeking skill certification.",
+    "link": "https://www.pmkvyofficial.org/"
+  },
+  {
+    "id": "passport-seva",
+    "name": "Passport Seva",
+    "category": "Identity & Travel Documents",
+    "description": "Official portal to apply for a new passport, renewal, or related services such as police clearance certificates, with appointment booking.",
+    "eligibility": "Any Indian citizen; minors require parental documentation.",
+    "link": "https://www.passportindia.gov.in/"
+  },
+  {
+    "id": "parivahan",
+    "name": "Parivahan Seva (Driving Licence & Vehicle Registration)",
+    "category": "Transport",
+    "description": "National portal for driving licence applications, learner's licence tests, vehicle registration, and related transport department services.",
+    "eligibility": "Any Indian citizen meeting the minimum age and eligibility criteria for the specific service (e.g. 18+ for a permanent licence).",
+    "link": "https://parivahan.gov.in/"
+  },
+  {
+    "id": "ayushman-vay-vandana",
+    "name": "Ayushman Bharat Vay Vandana Card (Senior Citizens)",
+    "category": "Healthcare",
+    "description": "Extends the Ayushman Bharat health cover of ₹5 lakh per year specifically to all senior citizens aged 70 and above, regardless of income.",
+    "eligibility": "All Indian citizens aged 70 years or above.",
+    "link": "https://pmjay.gov.in/"
+  },
+  {
+    "id": "umang",
+    "name": "UMANG (Unified Mobile Application for New-age Governance)",
+    "category": "Digital Governance",
+    "description": "Single mobile app providing access to hundreds of central and state government services, from utility bill payments to scheme applications.",
+    "eligibility": "Any Indian citizen with a smartphone; some services require Aadhaar-linked mobile verification.",
+    "link": "https://web.umang.gov.in/"
+  }
+]
