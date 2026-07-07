@@ -40,6 +40,27 @@ export const COMPLAINT_CATEGORIES = [
 // demo-only "simulate progress" action on the tracker.
 export const COMPLAINT_STATUSES = ["Submitted", "In Review", "Resolved"];
 
+// ---- 5. Input / storage limits ----------------------------------
+// Maximum characters allowed in user-facing text inputs. Prevents
+// runaway prompt injection and localStorage overflow.
+export const MAX_CHAT_INPUT_LENGTH     = 1000;  // characters
+export const MAX_COMPLAINT_LENGTH      = 1500;  // characters
+export const MAX_SITUATION_LENGTH      = 800;   // schemes search
+export const MAX_GOAL_LENGTH           = 200;   // documents goal
+
+// Chat history is capped so localStorage never gets too large.
+export const MAX_CHAT_HISTORY_MESSAGES = 50;    // messages kept
+
+// Maximum characters stored per complaint (summary + description)
+export const MAX_STORAGE_ENTRY_SIZE    = 5000;  // characters
+
+// AI request timeout in milliseconds. AbortController will cancel
+// the fetch if the provider hasn't responded within this window.
+export const AI_REQUEST_TIMEOUT_MS     = 30_000; // 30 seconds
+
+// Debounce delay for the real-time category hint in complaint form
+export const CATEGORY_HINT_DEBOUNCE_MS = 300;   // ms
+
 let envCache = null;
 
 /**
