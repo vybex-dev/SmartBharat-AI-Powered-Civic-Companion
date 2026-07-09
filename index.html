@@ -1,102 +1,126 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart Bharat · AI-Powered Civic Companion</title>
-  <meta name="description" content="Smart Bharat is your AI-powered civic companion — find government schemes, report civic issues, and access public services in plain language, in English or Hindi." />
-  <meta name="theme-color" content="#6C5CE7" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Bharat · AI-Powered Civic Companion</title>
+    <meta
+      name="description"
+      content="Smart Bharat is your AI-powered civic companion — find government schemes, report civic issues, and access public services in plain language, in English or Hindi."
+    />
+    <meta name="theme-color" content="#6C5CE7" />
 
-  <!-- Open Graph / Social -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:title"       content="Smart Bharat · AI-Powered Civic Companion" />
-  <meta property="og:description" content="Find government schemes, report civic issues, and access public services in seconds — in English or Hindi." />
-  <meta property="og:site_name"   content="Smart Bharat" />
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Smart Bharat · AI-Powered Civic Companion"
+    />
+    <meta
+      property="og:description"
+      content="Find government schemes, report civic issues, and access public services in seconds — in English or Hindi."
+    />
+    <meta property="og:site_name" content="Smart Bharat" />
 
-  <!-- DNS prefetch for external API domains (performance) -->
-  <link rel="dns-prefetch" href="https://generativelanguage.googleapis.com" />
-  <link rel="dns-prefetch" href="https://api.groq.com" />
+    <!-- DNS prefetch for external API domains (performance) -->
+    <link rel="dns-prefetch" href="https://generativelanguage.googleapis.com" />
+    <link rel="dns-prefetch" href="https://api.groq.com" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <!-- Material Symbols -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material Symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" href="./src/styles/main.css" />
-</head>
-<body>
+    <link rel="stylesheet" href="./src/styles/main.css" />
+  </head>
+  <body>
+    <!-- Animated Mesh Background -->
+    <div class="mesh-background" aria-hidden="true"></div>
 
-  <!-- Skip to content link (keyboard / screen reader accessibility) -->
-  <a class="skip-link" href="#app">Skip to main content</a>
+    <!-- Top Navigation -->
+    <header id="navbar" class="navbar" role="banner"></header>
 
-  <!-- Animated Mesh Background -->
-  <div class="mesh-background" aria-hidden="true"></div>
-
-  <!-- Top Navigation -->
-  <header id="navbar" class="navbar" role="banner"></header>
-
-  <!-- App Layout: Sidebar + Main -->
-  <div class="app-layout">
-    <aside class="sidebar" id="sidebar" aria-label="Application navigation"></aside>
-    <main id="app" aria-label="Main content" tabindex="-1"></main>
-  </div>
-
-  <!-- Mobile Bottom Navigation -->
-  <nav class="bottom-nav" id="bottomNav" aria-label="Mobile navigation"></nav>
-
-  <!-- Mobile AI FAB -->
-  <button class="ai-fab" id="aiFab" aria-label="Open AI Chat">
-    <span class="material-symbols-outlined" style="font-size: 26px; font-variation-settings: 'FILL' 1;">auto_awesome</span>
-  </button>
-
-  <!-- Site Footer -->
-  <footer class="site-footer">
-    <div class="site-footer__inner">
-      <div class="site-footer__brand">
-        <h3>Smart Bharat</h3>
-        <p>An initiative of the Ministry of Electronics &amp; IT to bring governance to your fingertips.</p>
-        <p class="site-footer__copyright" id="footerText"></p>
-      </div>
-      <div class="site-footer__links">
-        <div class="site-footer__col">
-          <h4>Legal</h4>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-        </div>
-        <div class="site-footer__col">
-          <h4>Support</h4>
-          <a href="#">Accessibility</a>
-          <a href="#">Contact Us</a>
-        </div>
-      </div>
+    <!-- App Layout: Sidebar + Main -->
+    <div class="app-layout">
+      <aside
+        class="sidebar"
+        id="sidebar"
+        aria-label="Application navigation"
+      ></aside>
+      <main id="app" aria-label="Main content" tabindex="-1"></main>
     </div>
-  </footer>
 
-  <script type="module" src="./src/main.js"></script>
-  <script type="module">
-    import { getTranslations } from "./src/utils/translations.js";
-    import { getStoredLanguage } from "./src/utils/storage.js";
-    import { DEFAULT_LANGUAGE } from "./src/config/config.js";
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav" id="bottomNav" aria-label="Mobile navigation"></nav>
 
-    function paintFooter() {
-      const t = getTranslations(getStoredLanguage() || DEFAULT_LANGUAGE);
-      document.getElementById("footerText").textContent = t.footer.text;
-    }
-    paintFooter();
-    window.addEventListener("storage", paintFooter);
-    document.getElementById("navbar").addEventListener("click", () => setTimeout(paintFooter, 0));
+    <!-- Mobile AI FAB -->
+    <button class="ai-fab" id="aiFab" aria-label="Open AI Chat">
+      <span
+        class="material-symbols-outlined"
+        style="font-size: 26px; font-variation-settings: &quot;FILL&quot; 1"
+        >auto_awesome</span
+      >
+    </button>
 
-    // Sticky header scroll effect
-    window.addEventListener("scroll", () => {
-      const header = document.querySelector("header");
-      if (window.scrollY > 8) {
-        header.classList.add("scrolled");
-      } else {
-        header.classList.remove("scrolled");
+    <!-- Site Footer -->
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          <h3>Smart Bharat</h3>
+          <p>
+            An initiative of the Ministry of Electronics &amp; IT to bring
+            governance to your fingertips.
+          </p>
+          <p class="site-footer__copyright" id="footerText"></p>
+        </div>
+        <div class="site-footer__links">
+          <div class="site-footer__col">
+            <h4>Legal</h4>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+          <div class="site-footer__col">
+            <h4>Support</h4>
+            <a href="#">Accessibility</a>
+            <a href="#">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="./src/main.js"></script>
+    <script type="module">
+      import { getTranslations } from "./src/utils/translations.js";
+      import { getStoredLanguage } from "./src/utils/storage.js";
+      import { DEFAULT_LANGUAGE } from "./src/config/config.js";
+
+      function paintFooter() {
+        const t = getTranslations(getStoredLanguage() || DEFAULT_LANGUAGE);
+        document.getElementById("footerText").textContent = t.footer.text;
       }
-    });
-  </script>
-</body>
+      paintFooter();
+      window.addEventListener("storage", paintFooter);
+      document
+        .getElementById("navbar")
+        .addEventListener("click", () => setTimeout(paintFooter, 0));
+
+      // Sticky header scroll effect
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector("header");
+        if (window.scrollY > 8) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+    </script>
+  </body>
 </html>
